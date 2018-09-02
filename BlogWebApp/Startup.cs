@@ -20,7 +20,11 @@ namespace BlogWebApp
             });
 
             // The Markdown middleware requires the use of MVC to use a Razor configuration template
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                // Let's preserve the memory of Sir Terry Pratchett
+                options.Filters.Add(new XClacksOverheadAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
