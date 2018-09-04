@@ -1,3 +1,10 @@
+---
+title: Markdown Cheat Sheet
+abstract: This is a quick reference and showcase for the Markdown syntax.
+keywords: Markdown
+categories: Markdown
+postDate: 2018-08-24T16:52:15.0000000+01:00
+---
 # [Markdown][] Cheat Sheet
 
 This is a quick reference and showcase. For complete information see the [original spec][markdown] and/or the [Github-Flavored Markdown][github-markdown] information page.

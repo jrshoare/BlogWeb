@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BlogWebApp.Persistence;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Westwind.AspNetCore.Markdown;
@@ -24,6 +25,12 @@ namespace BlogWebApp
             {
                 // Let's preserve the memory of Sir Terry Pratchett
                 options.Filters.Add(new XClacksOverheadAttribute());
+            });
+
+            services.AddSingleton<IBlogRepository, BlogRepository>(provider =>
+            {
+                var hostingEnvironment = provider.GetRequiredService<IHostingEnvironment>();
+                return new BlogRepository(hostingEnvironment);
             });
         }
 

@@ -1,12 +1,18 @@
-﻿@{
+﻿@model IEnumerable<BlogSnippet>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="row">
     <div class="col-md-6">
         <h2>Blogs</h2>
-        <ul>
-            <li><a href="~/posts/2018/08/24/markdown-cheat-sheet.md">Markdown cheat sheet (.md file)</a></li>
-        </ul>
+        @foreach (var item in @Model)
+        {
+            <h3><a href="@item.Url">@item.Title</a></h3>
+            @item.PostedOn.ToString("MMM dd, yyyy")
+            <br />
+            @item.Abstract
+            <a href="@item.Url">Read more...</a>
+        }
     </div>
 </div>

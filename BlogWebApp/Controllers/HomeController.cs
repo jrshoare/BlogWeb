@@ -1,14 +1,22 @@
 ﻿using BlogWebApp.Models;
+using BlogWebApp.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace BlogWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public HomeController(IBlogRepository blogRepository)
         {
-            return View();
+            BlogRepository = blogRepository;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = await BlogRepository.GetMostRecentAsync();
+            return View(model);
         }
 
         public IActionResult About()
@@ -35,5 +43,7 @@ namespace BlogWebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        private IBlogRepository BlogRepository { get; set; }
     }
 }
