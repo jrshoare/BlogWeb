@@ -20,7 +20,13 @@ postDate: 2018-09-04T16:24:17.0000000+01:00
 The rest of your blog post goes here.
 ```
 
-The `keywords:`, `categories:` and `postDate:` fields are currently ignored.
+If the `postDate:` keyword is present and defines a date that can be parsed to a .NET `DateTime` object then it is used
+to report the date of the blog post. Otherwise, if the file is located in a sub-directory tree structure using the
+convention `{yyyy}/{mm}/{dd}` then this date is used. If neither of these strategies succeed then the post date of the
+blog assumes the minium value for a .NET `DateTime` object.
+
+The application includes a simple search capability that performs a case-insensitive match for the supplied text against
+the abstract, keywords and categories.
 
 The project uses generic Markdown processing middleware installed as a
 [NuGet package](https://www.nuget.org/packages/Westwind.AspNetCore.Markdown/) or obtainable as source from

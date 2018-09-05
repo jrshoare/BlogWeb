@@ -38,6 +38,12 @@ namespace BlogWebApp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Search(string q)
+        {
+            var model = await BlogRepository.FindMatchingAsync(q);
+            return View("Index", model);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
