@@ -67,7 +67,7 @@ namespace BlogWebApp.Persistence
             {
                 var snippet = new BlogSnippet
                 {
-                    Url = path.Substring(path.LastIndexOf("posts")).Replace("\\", "/")
+                    Url = $"/{path.Substring(path.LastIndexOf("posts")).Replace("\\", "/")}"
                 };
 
                 string markdown = await File.ReadAllTextAsync(path);
@@ -171,7 +171,7 @@ namespace BlogWebApp.Persistence
             var segments = Path.GetDirectoryName(path).Split(Path.DirectorySeparatorChar).TakeLast(3).ToArray();
             if (segments.Length == 3)
             {
-                if (DateTime.TryParse(string.Format("{0}/{1}/{2}", segments[0], segments[1], segments[2]), out DateTime postDate))
+                if (DateTime.TryParse($"{segments[0]}/{segments[1]}/{segments[2]}", out DateTime postDate))
                 {
                     return postDate;
                 }
